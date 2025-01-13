@@ -25,8 +25,8 @@ jobs:
         id: setup-node
         uses: actions/setup-node@v4
         with:
-          node-version-file: .node-version
-          cache: npm
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install Dependencies
         id: npm-ci
@@ -57,7 +57,7 @@ jobs:
         id: test-action
         uses: ./
         with:
-          milliseconds: 2000
+          styleguide: 'https://google.github.io/styleguide/jsguide.html'
 
       - name: Print Output
         id: output
