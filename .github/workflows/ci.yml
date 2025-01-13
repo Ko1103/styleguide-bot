@@ -58,6 +58,8 @@ jobs:
         uses: ./
         with:
           styleguide: 'https://google.github.io/styleguide/jsguide.html'
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Print Output
         id: output
