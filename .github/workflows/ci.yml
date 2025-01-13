@@ -61,7 +61,3 @@ jobs:
           styleguide: 'https://google.github.io/styleguide/jsguide.html'
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
           github-token: ${{ github.token }}
-
-      - name: Print Output
-        id: output
-        run: echo "${{ steps.test-action.outputs.time }}"
