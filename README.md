@@ -1,7 +1,8 @@
-# Styleguide Bot
+# Style guide Bot
 
-Styleguide Botは、GitHub
-Actionsとして動作するプログラムです。PRを作成、または更新などをトリガーに、PRの変更内容をチェックし、Styleguideに違反している場合はコメントを返します。
+Style guide Botは、GitHub
+Actionsとして動作するプログラムです。PRを作成、または更新などをトリガーに、PRの変更内容をチェックし、Style
+guideに違反している場合はコメントを返します。
 
 ## 仕様
 
@@ -9,7 +10,7 @@ Actionsとして動作するプログラムです。PRを作成、または更�
 - StyleGuideのチェックにはOpenAIのChatGPTを使用する
 - チェックの結果、違反がある場合は違反した箇所にコメントを入れる
 - OpenAIのAPIからエラーが返された場合、PRに対してコメントする
-- Actionsの結果はStyleguideに違反している、していないに関わらず、成功とする
+- Actionsの結果はStyle guideに違反している、していないに関わらず、成功とする
 
 ## Initial Setup
 
