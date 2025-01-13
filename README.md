@@ -1,35 +1,16 @@
-# Create a GitHub Action Using TypeScript
+# Style guide Bot
 
-[![GitHub Super-Linter](https://github.com/actions/typescript-action/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
-![CI](https://github.com/actions/typescript-action/actions/workflows/ci.yml/badge.svg)
-[![Check dist/](https://github.com/actions/typescript-action/actions/workflows/check-dist.yml/badge.svg)](https://github.com/actions/typescript-action/actions/workflows/check-dist.yml)
-[![CodeQL](https://github.com/actions/typescript-action/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/actions/typescript-action/actions/workflows/codeql-analysis.yml)
-[![Coverage](./badges/coverage.svg)](./badges/coverage.svg)
+Style guide Botは、GitHub
+Actionsとして動作するプログラムです。PRを作成、または更新などをトリガーに、PRの変更内容をチェックし、Style
+guideに違反している場合はコメントを返します。
 
-Use this template to bootstrap the creation of a TypeScript action. :rocket:
+## 仕様
 
-This template includes compilation support, tests, a validation workflow,
-publishing, and versioning guidance.
-
-If you are new, there's also a simpler introduction in the
-[Hello world JavaScript action repository](https://github.com/actions/hello-world-javascript-action).
-
-## Create Your Own Action
-
-To create your own action, you can use this repository as a template! Just
-follow the below instructions:
-
-1. Click the **Use this template** button at the top of the repository
-1. Select **Create a new repository**
-1. Select an owner and name for your new repository
-1. Click **Create repository**
-1. Clone your new repository
-
-> [!IMPORTANT]
->
-> Make sure to remove or update the [`CODEOWNERS`](./CODEOWNERS) file! For
-> details on how to use this file, see
-> [About code owners](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners).
+- PRリクエストの変更をトリガーに実行されることを想定
+- StyleGuideのチェックにはOpenAIのChatGPTを使用する
+- チェックの結果、違反がある場合は違反した箇所にコメントを入れる
+- OpenAIのAPIからエラーが返された場合、PRに対してコメントする
+- Actionsの結果はStyle guideに違反している、していないに関わらず、成功とする
 
 ## Initial Setup
 
@@ -197,15 +178,11 @@ steps:
     id: test-action
     uses: ./
     with:
-      milliseconds: 1000
-
-  - name: Print Output
-    id: output
-    run: echo "${{ steps.test-action.outputs.time }}"
+      styleguide: 'https://google.github.io/styleguide/jsguide.html'
 ```
 
-For example workflow runs, check out the
-[Actions tab](https://github.com/actions/typescript-action/actions)! :rocket:
+<!-- For example workflow runs, check out the
+[Actions tab](https://github.com/actions/typescript-action/actions)! :rocket: -->
 
 ## Usage
 
@@ -226,13 +203,9 @@ steps:
 
   - name: Test Local Action
     id: test-action
-    uses: actions/typescript-action@v1 # Commit with the `v1` tag
+    uses: actions/styleguide-bot@v1
     with:
-      milliseconds: 1000
-
-  - name: Print Output
-    id: output
-    run: echo "${{ steps.test-action.outputs.time }}"
+      styleguide: 'https://github.com/example/styleguide'
 ```
 
 ## Publishing a New Release

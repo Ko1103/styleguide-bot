@@ -1,24 +1,29 @@
-name: The name of your action here
-description: Provide a description here
-author: Your name or organization here
+name: 'Styleguide Bot'
+description:
+  'PRの変更内容をStyleguideに基づいてチェックし、違反がある場合はコメントを返すGitHub
+  Action'
+author: 'Ko Yamaura'
 
-# Add your action's branding here. This will appear on the GitHub Marketplace.
+# ブランディングの設定
 branding:
-  icon: heart
-  color: red
+  icon: 'check-circle'
+  color: 'blue'
 
-# Define your inputs here.
+# 入力パラメータの定義
 inputs:
-  milliseconds:
-    description: Your input description here
+  styleguide:
+    description:
+      'StyleGuideのURL（例: https://google.github.io/styleguide/jsguide.html）'
     required: true
-    default: '1000'
+  openai-api-key:
+    description: 'OpenAI APIキー（ChatGPTを使用するために必要）'
+    required: true
+  github-token:
+    description: 'GitHub Token（PRへのコメント投稿に使用）'
+    required: true
+    default: ${{ github.token }}
 
-# Define your outputs here.
-outputs:
-  time:
-    description: Your output description here
-
+# アクションの実行設定
 runs:
-  using: node20
-  main: dist/index.js
+  using: 'node20'
+  main: 'dist/index.js'
